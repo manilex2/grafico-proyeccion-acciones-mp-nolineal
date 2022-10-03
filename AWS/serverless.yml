@@ -1,0 +1,26 @@
+# serverless.yml
+
+service: graf-acciones-mp-nolineal
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: proy
+  region: us-east-2
+  environment:
+    DB_HOST: ${env:DB_HOST}
+    DB_USER: ${env:DB_USER}
+    DB_PASSWORD: ${env:DB_PASSWORD}
+    DB_PORT: ${env:DB_PORT}
+    DB_DATABASE: ${env:DB_DATABASE}
+
+functions:
+  app:
+    description: LTG24 - Gráfico que muestra las proyecciones a Mediano Plazo No Lineales de acciones desde la Base de Datos de Acciones creada en AWS RDS.
+    handler: index.handler
+    environment:
+      TABLE_ACCIONES_PROY: ${env:TABLE_ACCIONES_PROY}
+    events:
+      - http: GET /
+      - http: 'GET {proxy+}'

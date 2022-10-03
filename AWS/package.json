@@ -1,0 +1,14 @@
+{
+  "name": "grafico-proyeccion-acciones-mp-nolineal",
+  "version": "1.0.0",
+  "description": "Gráfico de Proyección de Acciones a Mediano Plazo No Lineal",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "serverless-http": "^2.7.0"
+  }
+}
