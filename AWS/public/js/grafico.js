@@ -26,7 +26,21 @@ function totalChart(ctx, extraerdatos){
         type: 'line',
         data: {
             labels: extraerdatos.map(item => {
-                return item.fecha;
+                let day, month, year;
+                let fecha = new Date(item.fecha);
+                year = fecha.getFullYear();
+                if (fecha.getDate() < 10) {
+                    day = `0${fecha.getDate()}`;
+                } else {
+                    day = fecha.getDate();
+                }
+                if ((fecha.getMonth()+1) < 10) {
+                    month = `0${fecha.getMonth()+1}`;
+                } else {
+                    month = fecha.getMonth()+1;
+                }
+                let fechaTransformada = `${day}-${month}-${year}`;
+                return fechaTransformada;
             }),
             datasets: [{
                 label: 'Precio Real',
@@ -37,7 +51,8 @@ function totalChart(ctx, extraerdatos){
                 }),
                 borderColor: '#66C7FF',
                 backgroundColor: '#66C7FF',
-                radius: 3
+                radius: 2,
+                tension: 0.5
                 //Agregar Puntos
             }, {
                 label: 'Forecast',
@@ -48,7 +63,8 @@ function totalChart(ctx, extraerdatos){
                 }),
                 borderColor: '#FF9900',
                 backgroundColor: '#FF9900',
-                radius: 3
+                radius: 0,
+                tension: 0.5
                 //Agregar Puntos
             }, {
                 label: 'Optimista',
@@ -59,7 +75,8 @@ function totalChart(ctx, extraerdatos){
                 }),
                 borderColor: '#BDD977',
                 backgroundColor: '#BDD977',
-                radius: 3
+                radius: 0,
+                tension: 0.5
                 //Agregar Puntos
             }, {
                 label: 'Pesimista',
@@ -70,7 +87,8 @@ function totalChart(ctx, extraerdatos){
                 }),
                 borderColor: '#FF6666',
                 backgroundColor: '#FF6666',
-                radius: 3
+                radius: 0,
+                tension: 0.5
                 //Agregar Puntos
             }]
         },
@@ -108,7 +126,7 @@ function totalChart(ctx, extraerdatos){
             },
             elements: {
                 line: {
-                    borderWidth: 3,
+                    borderWidth: 1,
                     fill: false,
                 },
                 point: {
